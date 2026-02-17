@@ -1,0 +1,58 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "comment": "Example configuration for OpenCode with MCP servers",
+  
+  "mcp": {
+    "comment": "Official MCP Servers",
+    
+    "filesystem": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "$HOME"],
+      "comment": "Secure file operations with path access controls"
+    },
+    
+    "memory": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-memory"],
+      "comment": "Knowledge graph-based persistent memory system"
+    },
+    
+    "search": {
+      "type": "local",
+      "command": ["python3", "$HOME/mcp-setup/search/search.py"],
+      "comment": "Web search using Python server with SearXNG (requires SearXNG container and Python)"
+    },
+    
+    "puppeteer": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-puppeteer"],
+      "comment": "Browser automation and web scraping"
+    }
+  },
+  
+  "mcp_community_examples": {
+    "comment": "Community MCP Servers - Add these to 'mcp' section if needed",
+    
+    "github": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "optional-github-token"
+      },
+      "comment": "GitHub repository and issue access (token optional for public repos)"
+    },
+    
+    "git": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-git", "$HOME/projects"],
+      "comment": "Git repository operations and history"
+    },
+  },
+  
+  "tips": {
+    "setup": "Run ./setup.sh to automatically configure MCP servers",
+    "env_vars": "Set environment variables in your shell (.bashrc or .zshrc) or in the config",
+    "npx": "MCP servers download on first use via npx -y, no manual installation needed",
+    "backup": "Always creates a backup before modifying config"
+  }
+}
